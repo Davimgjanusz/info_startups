@@ -822,7 +822,9 @@ h2 { font-size: clamp(2.5rem, 5vw, 5.2rem); line-height: .98; letter-spacing: -.
 .detail-back:hover { border-color: var(--cyan); color: var(--cyan); }
 .year-button:disabled { opacity: .7; background: var(--panel); color: var(--muted); }
 .results-count { color: var(--muted); font: 11px var(--mono); margin-bottom: 20px; }
-.empty-state { padding: 30px; border: 1px dashed var(--line); color: var(--muted); background: var(--panel); }
+.catalog-state, .empty-state { padding: 30px; border: 1px dashed var(--line); color: var(--muted); background: var(--panel); }
+.empty-state p { margin-top: 0; }
+.empty-state .button { margin-top: 8px; }
 .preferences { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 .preferences button { min-width: 40px; min-height: 40px; border: 1px solid var(--line); background: var(--panel); color: var(--muted); cursor: pointer; border-radius: 8px; }
 .preferences button:hover { color: var(--ink); border-color: var(--cyan); }

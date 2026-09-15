@@ -12,7 +12,7 @@ globalThis.localStorage = {
   getItem: key => storage.get(key) ?? null,
   setItem: (key, value) => storage.set(key, value),
 };
-const dependencies = ['react', 'react/jsx-runtime', 'react/jsx-dev-runtime', 'lucide-react', 'three', 'three/addons/controls/OrbitControls.js'];
+const dependencies = ['react', 'react/jsx-runtime', 'react/jsx-dev-runtime', 'lucide-react', 'three', 'three/addons/controls/OrbitControls.js', '@supabase/supabase-js'];
 const result = await build({
   configFile: false,
   plugins: [{
@@ -37,6 +37,7 @@ for (const dependency of dependencies) {
 try {
   const { App, StartupDetail, Preferences, AnimatedHeadline, startupsByYear } = await import(`data:text/javascript;base64,${Buffer.from(code).toString('base64')}`);
   const startups = startupsByYear['2026'];
+  const catalog = { startupsByYear, years: Object.keys(startupsByYear).sort((first, second) => second.localeCompare(first)) };
   assert.equal(startups.length, 4);
   assert.deepEqual(startups.map(s => s.id), ['appono', 'selectio', 'bixuco', 'facos']);
 
@@ -48,7 +49,7 @@ try {
       assert.equal(readPreference('info-startups-theme', ['dark', 'light'], 'dark'), theme);
       assert.equal(readPreference('info-startups-language', ['pt', 'en'], 'pt'), language);
       const t = key => translate(language, key);
-      const home = renderToStaticMarkup(React.createElement(App));
+      const home = renderToStaticMarkup(React.createElement(App, { initialCatalog: catalog }));
       assert.ok(home.includes(t('Grandes ideias')));
       assert.equal((home.match(/<h1\b/g) ?? []).length, 1);
       const headline = renderToStaticMarkup(React.createElement(AnimatedHeadline, { language, ...heroHeadlines[language] }));
@@ -117,7 +118,7 @@ try {
   globalThis.localStorage = { getItem() { throw Error('Blocked'); }, setItem() { throw Error('Blocked'); } };
   assert.equal(readPreference('info-startups-theme', ['dark', 'light'], 'dark'), 'dark');
   assert.doesNotThrow(() => savePreference('info-startups-theme', 'light'));
-  assert.doesNotThrow(() => renderToStaticMarkup(React.createElement(App)));
+  assert.doesNotThrow(() => renderToStaticMarkup(React.createElement(App, { initialCatalog: catalog })));
   const document = { documentElement: { dataset: {}, style: {} } };
   vm.runInNewContext(bootstrap, { document, localStorage });
   assert.equal(document.documentElement.dataset.theme, 'dark');
