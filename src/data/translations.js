@@ -31,6 +31,7 @@ const en = {
   'Ativar modo claro': 'Switch to light mode', 'Ativar modo escuro': 'Switch to dark mode',
   'Idioma': 'Language', 'Nenhuma startup encontrada para estes filtros.': 'No startups found for these filters.',
   'startup encontrada': 'startup found', 'startups encontradas': 'startups found',
+  'Lâmpada 3D girável': 'Rotatable 3D light bulb',
   'Info Startups | Ideias que ganham forma': 'Info Startups | Ideas taking shape',
   'Info Startups: ideias que ganham forma pelas mãos dos alunos de Informática da FECAP.': 'Info Startups: ideas taking shape through the work of FECAP Information Technology students.',
 };

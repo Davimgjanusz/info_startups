@@ -1,4 +1,4 @@
-export const HEADLINE_TIMING = Object.freeze({ typing: 80, deleting: 40, hold: 1600, gap: 300 });
+export const HEADLINE_TIMING = Object.freeze({ typing: 130, deleting: 70, hold: 2200, gap: 500 });
 
 export function splitCharacters(text, language) {
   if (typeof Intl.Segmenter === 'function') {

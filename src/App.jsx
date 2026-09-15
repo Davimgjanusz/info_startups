@@ -1,13 +1,15 @@
-import { useLayoutEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useLayoutEffect, useRef, useState } from 'react';
 import { ArrowUpRight, ChevronDown, Menu, X } from 'lucide-react';
 import BrandMark from './components/BrandMark';
 import StartupDetail from './components/StartupDetail';
-import { categories, startupsByYear, years } from './data/startups';
+import { startupsByYear, years } from './data/startups';
 import Preferences from './components/Preferences';
 import { accessibleText, getLocalizedText, heroHeadlines, translate } from './data/translations';
 import AnimatedHeadline from './components/AnimatedHeadline';
 import useHeaderScroll from './hooks/useHeaderScroll';
 import { readPreference, savePreference } from './data/preferences';
+
+const HeroBulb3D = lazy(() => import('./components/HeroBulb3D'));
 
 function App() {
   const headerScrolled = useHeaderScroll();
@@ -32,7 +34,6 @@ function App() {
     savePreference('info-startups-language', language);
   }, [language]);
 
-  const [activeCategory, setActiveCategory] = useState('Todas');
   const [activeYear, setActiveYear] = useState(years[0]);
   const [menuOpen, setMenuOpen] = useState(false);
   const [selectedStartup, setSelectedStartup] = useState(null);
@@ -66,10 +67,6 @@ function App() {
   };
 
   const startups = startupsByYear[activeYear] ?? [];
-  const filteredStartups = activeCategory === 'Todas'
-    ? startups
-    : startups.filter((startup) => startup.category === activeCategory);
-
   const closeMenu = () => setMenuOpen(false);
 
   if (selectedStartup) {
@@ -118,7 +115,9 @@ function App() {
           <div className="art-orbit art-orbit--one" />
           <div className="art-orbit art-orbit--two" />
           <div className="art-label art-label--top">{t('ideia')} <span>→</span> {t('impacto')}</div>
-          <BrandMark />
+          <Suspense fallback={<BrandMark />}>
+            <HeroBulb3D theme={theme} t={t} />
+          </Suspense>
           <div className="art-caption"><span>01</span><strong>{t('Acenda')}<br />{t('a próxima ideia.')}</strong></div>
         </div>
 
@@ -136,7 +135,7 @@ function App() {
         </div>
         <div className="metrics" aria-label={t('Números do projeto')}>
           <div><strong>{String(startups.length).padStart(2, '0')}</strong><span>{t('startups em')} {activeYear}</span></div>
-          <div><strong>+80</strong><span>{t('alunos envolvidos')}</span></div>
+          <div><strong>19</strong><span>{t('alunos envolvidos')}</span></div>
           <div><strong>∞</strong><span>{t('possibilidades abertas')}</span></div>
         </div>
       </section>
@@ -148,16 +147,11 @@ function App() {
         </div>
         <div className="year-bar" role="group" aria-label={t('Selecionar ano da turma')}>
           <span className="year-label">{t('Turma')}</span>
-          {years.map((year) => <button key={year} className={activeYear === year ? 'year-button active' : 'year-button'} aria-pressed={activeYear === year} onClick={() => { setActiveYear(year); setActiveCategory('Todas'); }}>{year}</button>)}
+          {years.map((year) => <button key={year} className={activeYear === year ? 'year-button active' : 'year-button'} aria-pressed={activeYear === year} onClick={() => setActiveYear(year)}>{year}</button>)}
           <button className="year-button year-button--future" type="button" disabled>{t('Próximas turmas +')}</button>
         </div>
-        <div className="filter-bar" role="group" aria-label={t('Filtrar startups')}>
-          {categories.map((category) => <button key={category} className={activeCategory === category ? 'filter-button active' : 'filter-button'} aria-pressed={activeCategory === category} onClick={() => setActiveCategory(category)}>{t(category)}</button>)}
-        </div>
-        <p className="results-count" role="status">{filteredStartups.length} {t(filteredStartups.length === 1 ? 'startup encontrada' : 'startups encontradas')}</p>
-        {filteredStartups.length === 0 && <p className="empty-state">{t('Nenhuma startup encontrada para estes filtros.')}</p>}
         <div className="startup-grid">
-          {filteredStartups.map((startup) => (
+          {startups.map((startup) => (
             <article className={`startup-card startup-card--${startup.accent} startup-card--featured`} key={startup.id}>
               <div className="card-top"><span className="card-number">{startup.number}</span><span className="card-category">{t(startup.category)}</span><ArrowUpRight className="card-arrow" size={19} /></div>
               <div className="card-symbol">
@@ -175,14 +169,7 @@ function App() {
         </div>
       </section>
 
-      <section className="students section-shell">
-        <div className="students-image" aria-label={t('Equipe de estudantes colaborando em um projeto de tecnologia')} role="img"><div className="image-overlay"><span>info startups · fecap</span><strong>{t('feito por')}<br /><i>{t('quem faz.')}</i></strong></div></div>
-        <div className="students-copy"><div className="section-kicker"><span>02</span><span className="kicker-rule" /><span>{t('Por trás das ideias')}</span></div><h2>{t('Aprender é')} <span>{t('construir')}</span> {t('junto.')}</h2><p>{t('Por trás de cada startup existe uma equipe aprendendo a fazer perguntas melhores, testar caminhos e dar forma ao que ainda não existe.')}</p><div className="student-detail"><span className="detail-mark">✦</span><div><strong>{t('Colaboração na prática')}</strong><small>{t('Do primeiro rascunho ao protótipo, cada passo é compartilhado.')}</small></div></div></div>
-      </section>
-
-      <section className="closing section-shell" id="contato"><div className="closing-glow" /><p className="eyebrow"><span className="eyebrow-line" /> {t('próximo capítulo')}</p><h2>{t('Uma ideia pode')}<br /><em>{t('transformar o futuro.')}</em></h2><a className="button button--light" href="mailto:startup@fecap.br">{t('Fale com a gente')} <ArrowUpRight size={17} /></a></section>
-
-      <footer className="site-footer section-shell"><a className="brand" href="#inicio"><BrandMark compact /><span><strong>INFO</strong> startups</span></a><p>{t('Colégio FECAP · Curso de Informática')}<br />{t('São Paulo, Brasil · acervo anual')}</p><div className="footer-links"><a href="#inicio">Instagram</a><a href="#contato">{t('Contato')}</a><a href="#inicio">{t('Voltar ao topo ↑')}</a></div></footer>
+      <footer className="site-footer section-shell"><a className="brand" href="#inicio"><BrandMark compact /><span><strong>INFO</strong> startups</span></a><p>{t('Colégio FECAP · Curso de Informática')}<br />{t('São Paulo, Brasil · acervo anual')}</p><div className="footer-links"><a href="https://www.instagram.com/info.startups/">Instagram</a><a href="mailto:ptiinfofecap@gmail.com">{t('Contato')}</a><a href="#inicio">{t('Voltar ao topo ↑')}</a></div></footer>
     </main>
   );
 }

@@ -12,7 +12,7 @@ globalThis.localStorage = {
   getItem: key => storage.get(key) ?? null,
   setItem: (key, value) => storage.set(key, value),
 };
-const dependencies = ['react', 'react/jsx-runtime', 'react/jsx-dev-runtime', 'lucide-react'];
+const dependencies = ['react', 'react/jsx-runtime', 'react/jsx-dev-runtime', 'lucide-react', 'three', 'three/addons/controls/OrbitControls.js'];
 const result = await build({
   configFile: false,
   plugins: [{
@@ -24,7 +24,7 @@ const result = await build({
         export { default as StartupDetail } from '/src/components/StartupDetail.jsx';
         export { default as Preferences } from '/src/components/Preferences.jsx';
         export { default as AnimatedHeadline } from '/src/components/AnimatedHeadline.jsx';
-        export { startupsByYear, categories } from '/src/data/startups.js';
+        export { startupsByYear } from '/src/data/startups.js';
       `;
     },
   }],
@@ -35,7 +35,7 @@ for (const dependency of dependencies) {
   code = code.replaceAll(`"${dependency}"`, JSON.stringify(import.meta.resolve(dependency)));
 }
 try {
-  const { App, StartupDetail, Preferences, AnimatedHeadline, startupsByYear, categories } = await import(`data:text/javascript;base64,${Buffer.from(code).toString('base64')}`);
+  const { App, StartupDetail, Preferences, AnimatedHeadline, startupsByYear } = await import(`data:text/javascript;base64,${Buffer.from(code).toString('base64')}`);
   const startups = startupsByYear['2026'];
   assert.equal(startups.length, 4);
   assert.deepEqual(startups.map(s => s.id), ['appono', 'selectio', 'bixuco', 'facos']);
@@ -57,8 +57,9 @@ try {
       assert.ok(headline.includes('aria-hidden="true"'));
       assert.ok(!headline.includes('aria-live'));
       assert.equal((headline.match(/class="headline-measure"/g) ?? []).length, 4);
-      assert.ok(home.includes(`4 ${t('startups encontradas')}`));
       assert.equal((home.match(/class="startup-card /g) ?? []).length, 4);
+      assert.ok(home.includes(`>19</strong><span>${t('alunos envolvidos')}</span>`));
+      assert.ok(!home.includes('filter-bar'));
       assert.ok(home.includes(t(theme === 'dark' ? 'Ativar modo claro' : 'Ativar modo escuro')));
       const preferences = React.createElement(Preferences, { key: 'preferences', theme, language, t, setTheme() {}, setLanguage() {} });
       for (const startup of startups) {
@@ -79,11 +80,6 @@ try {
         if (Object.values(startup.socials).some(link => link && !link.startsWith('#'))) {
           assert.ok(detail.includes('target="_blank" rel="noreferrer"'));
         }
-      }
-      for (const category of categories) {
-        const filtered = category === 'Todas' ? startups : startups.filter(s => s.category === category);
-        assert.equal(filtered.length, ['Todas', 'Tecnologia'].includes(category) ? 4 : 0);
-        assert.ok(home.includes(t(category)));
       }
     }
   }
@@ -126,7 +122,7 @@ try {
   vm.runInNewContext(bootstrap, { document, localStorage });
   assert.equal(document.documentElement.dataset.theme, 'dark');
   assert.equal(document.documentElement.lang, 'pt-BR');
-  console.log('PASS: PT/EN × dark/light rendering, all startups, filter data, translated content, preferences and pre-paint defaults.');
+  console.log('PASS: PT/EN × dark/light rendering, all startups, translated content, preferences and pre-paint defaults.');
 } finally {
   delete globalThis.localStorage;
 }
