@@ -1,4 +1,4 @@
-import { ArrowUpRight, Globe2 } from 'lucide-react';
+import { ArrowUpRight, Globe2, Mail } from 'lucide-react';
 import { accessibleText } from '../data/translations';
 
 function InstagramIcon({ size = 19 }) {
@@ -32,6 +32,7 @@ const networks = [
   { key: 'linkedin', label: 'LinkedIn', Icon: LinkedinIcon },
   { key: 'github', label: 'GitHub', Icon: GithubIcon },
   { key: 'website', label: 'Website', Icon: Globe2 },
+  { key: 'email', label: 'Email', Icon: Mail },
 ];
 
 export default function SocialLinks({ links = {}, name, language, t, compact = false, onInternalLink }) {
@@ -42,11 +43,13 @@ export default function SocialLinks({ links = {}, name, language, t, compact = f
     <div className={compact ? 'member-socials' : 'detail-socials'} role="group" aria-label={a11y.socials(name)}>
       {available.map(({ key, label: networkLabel, Icon }) => {
         const label = key === 'website' ? t('Site') : networkLabel;
-        const internal = links[key].startsWith('#');
+        const href = key === 'email' && !links[key].startsWith('mailto:') ? `mailto:${links[key]}` : links[key];
+        const internal = href.startsWith('#');
+        const email = href.startsWith('mailto:');
         return (
-          <a key={key} className={compact ? undefined : 'social-link'} href={links[key]}
-            target={internal ? undefined : '_blank'} rel={internal ? undefined : 'noreferrer'}
-            aria-label={a11y.social(label, name)} onClick={internal ? () => onInternalLink?.(links[key]) : undefined}>
+          <a key={key} className={compact ? undefined : 'social-link'} href={href}
+            target={internal || email ? undefined : '_blank'} rel={internal || email ? undefined : 'noreferrer'}
+            aria-label={a11y.social(label, name)} onClick={internal ? () => onInternalLink?.(href) : undefined}>
             <Icon size={compact ? 14 : 19} />
             {!compact && <><span>{label}</span><ArrowUpRight size={14} /></>}
           </a>

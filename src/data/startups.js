@@ -8,6 +8,12 @@ import selectioTeam from '../assets/selectio-equipe.png';
 import selectioKalil from '../assets/selectio-kalil.png';
 import selectioGustavo from '../assets/selectio-gustavo.png';
 import selectioMarcos from '../assets/selectio-marcos.png';
+import bixucoLogo from '../assets/bixuco-logo.png';
+import bixucoTeam from '../assets/bixuco-equipe.png';
+import bixucoArthur from '../assets/bixuco-arthur.png';
+import bixucoSophia from '../assets/bixuco-sophia.png';
+import bixucoYasmin from '../assets/bixuco-yasmin.png';
+import facosLogo from '../assets/facos-logo.svg';
 
 const selectio = {
   id: 'selectio',
@@ -109,6 +115,72 @@ const startupSource = {
       },
     },
     selectio,
+    {
+      id: 'bixuco',
+      name: 'Bixuco',
+      category: 'Tecnologia',
+      number: '03',
+      description: 'Startup brasileira que combina produto físico, tecnologia e plataforma digital para criar experiências voltadas ao contexto familiar.',
+      accent: 'lime',
+      tags: ['Famílias', 'Produto conectado', 'Plataforma digital'],
+      logo: bixucoLogo,
+      teamImage: bixucoTeam,
+      tagline: 'Produto físico · plataforma digital · experiência familiar',
+      segment: 'famílias e tecnologia',
+      headline: { text: 'Produto físico com', emphasis: 'experiência digital.' },
+      paragraphs: [
+        'A Bixuco atua na interseção entre tecnologia, inovação e desenvolvimento de produtos, com a proposta de criar soluções voltadas ao contexto familiar. Seu principal produto em desenvolvimento é a pelúcia Bixuco, integrada a uma proposta tecnológica e a uma plataforma digital própria.',
+        'O projeto busca transformar um produto físico em uma experiência conectada ao ambiente digital. Para isso, trabalha em infraestrutura de front-end, back-end, integração de APIs e gerenciamento de dados, além de frentes estratégicas como finanças, comunicação, planejamento e identidade visual.',
+      ],
+      features: [
+        { title: 'Pelúcia conectada', description: 'Produto físico pensado para ampliar possibilidades de interação no ambiente familiar.' },
+        { title: 'Plataforma própria', description: 'Base digital com front-end, back-end, APIs e dados para sustentar a experiência.' },
+        { title: 'Modelo escalável', description: 'Proposta de valor para unir produto, tecnologia e experiência do usuário no mercado brasileiro.' },
+      ],
+      teamMembers: [
+        {
+          name: 'Arthur Regiani Delgado Rosa De Oliveira', role: 'Membro da equipe', image: bixucoArthur,
+          email: 'a.regianidelgado@gmail.com',
+        },
+        {
+          name: 'Sophia Silva Freitas', role: 'Membro da equipe', image: bixucoSophia,
+          email: 'suelisophia21@gmail.com',
+        },
+        {
+          name: 'Yasmin Bertoni', role: 'Membro da equipe', image: bixucoYasmin,
+          email: 'bertoniyasmin@gmail.com',
+        },
+      ],
+      socials: {},
+    },
+    {
+      id: 'facos',
+      name: 'Faços',
+      category: 'Tecnologia',
+      number: '04',
+      description: 'Startup que conecta prestadores de serviço aos clientes que buscam soluções para necessidades do dia a dia.',
+      accent: 'facos',
+      tags: ['Serviços locais', 'Conexão', 'Marketplace'],
+      logo: facosLogo,
+      tagline: 'Serviços locais · conexão prática · comunidade',
+      segment: 'serviços locais',
+      headline: { text: 'Serviços próximos', emphasis: 'conectados a quem precisa.' },
+      paragraphs: [
+        'A Faços é uma startup criada para aproximar prestadores de serviço de clientes que procuram apoio para demandas do dia a dia. A proposta é tornar mais simples encontrar, conhecer e entrar em contato com profissionais disponíveis.',
+        'Com foco em conexão local e praticidade, a solução organiza a ponte entre quem oferece um serviço e quem precisa contratá-lo. A marca usa uma identidade visual inspirada em localização, caminhos e colmeia para reforçar a ideia de rede, proximidade e colaboração.',
+      ],
+      features: [
+        { title: 'Conexão local', description: 'Aproxima clientes de prestadores de serviço disponíveis na região.' },
+        { title: 'Busca prática', description: 'Facilita encontrar ajuda para necessidades e tarefas do cotidiano.' },
+        { title: 'Rede de confiança', description: 'Organiza contatos, serviços e oportunidades em uma experiência simples.' },
+      ],
+      teamMembers: [],
+      socials: {
+        instagram: 'https://www.instagram.com/facos.oficial?stkn=MTU0cm5ibHpvejI1YQ==',
+        github: 'https://github.com/Pedro-Arruda-Az/Fa-os',
+        website: 'https://canva.link/gp4pe4iv9geyxka',
+      },
+    },
   ],
 };
 
@@ -146,6 +218,40 @@ const englishContent = {
       { title: 'Reward management', description: 'Payments integrated with Mercado Pago, transaction records and financial tracking of referrals.' },
     ],
     roles: ['Administrative Director', 'Technology Director', 'Projects Director'],
+  },
+  bixuco: {
+    description: 'A Brazilian startup combining a physical product, technology and a digital platform to create experiences for family contexts.',
+    tags: ['Families', 'Connected product', 'Digital platform'],
+    tagline: 'Physical product · digital platform · family experience',
+    segment: 'families and technology',
+    headline: { text: 'A physical product with', emphasis: 'a digital experience.' },
+    paragraphs: [
+      'Bixuco works at the intersection of technology, innovation and product development, with the goal of creating solutions for family contexts. Its main product in development is the Bixuco plush toy, integrated with a technology proposal and its own digital platform.',
+      'The project aims to transform a physical product into an experience connected to the digital environment. To do so, it is developing front-end and back-end infrastructure, API integration and data management, as well as strategic areas such as finance, communication, planning and visual identity.',
+    ],
+    features: [
+      { title: 'Connected plush toy', description: 'A physical product designed to expand interaction possibilities in family environments.' },
+      { title: 'Owned platform', description: 'A digital base with front end, back end, APIs and data to support the experience.' },
+      { title: 'Scalable model', description: 'A value proposition that combines product, technology and user experience for the Brazilian market.' },
+    ],
+    roles: ['Team Member', 'Team Member', 'Team Member'],
+  },
+  facos: {
+    description: 'A startup that connects service providers with customers looking for everyday solutions.',
+    tags: ['Local services', 'Connection', 'Marketplace'],
+    tagline: 'Local services · practical connection · community',
+    segment: 'local services',
+    headline: { text: 'Nearby services', emphasis: 'connected to those who need them.' },
+    paragraphs: [
+      'Faços was created to bring service providers closer to customers looking for support with everyday needs. Its goal is to make it simpler to find, learn about and contact available professionals.',
+      'Focused on local connection and practicality, the solution builds a bridge between those offering a service and those who need to hire one. The brand identity draws from location, paths and honeycomb imagery to reinforce network, proximity and collaboration.',
+    ],
+    features: [
+      { title: 'Local connection', description: 'Brings customers closer to service providers available in their area.' },
+      { title: 'Practical search', description: 'Makes it easier to find help for everyday needs and tasks.' },
+      { title: 'Trusted network', description: 'Organizes contacts, services and opportunities in a simple experience.' },
+    ],
+    roles: [],
   },
 };
 

@@ -37,8 +37,8 @@ for (const dependency of dependencies) {
 try {
   const { App, StartupDetail, Preferences, AnimatedHeadline, startupsByYear, categories } = await import(`data:text/javascript;base64,${Buffer.from(code).toString('base64')}`);
   const startups = startupsByYear['2026'];
-  assert.equal(startups.length, 2);
-  assert.deepEqual(startups.map(s => s.id), ['appono', 'selectio']);
+  assert.equal(startups.length, 4);
+  assert.deepEqual(startups.map(s => s.id), ['appono', 'selectio', 'bixuco', 'facos']);
 
   for (const language of ['pt', 'en']) {
     for (const theme of ['dark', 'light']) {
@@ -57,14 +57,14 @@ try {
       assert.ok(headline.includes('aria-hidden="true"'));
       assert.ok(!headline.includes('aria-live'));
       assert.equal((headline.match(/class="headline-measure"/g) ?? []).length, 4);
-      assert.ok(home.includes(`2 ${t('startups encontradas')}`));
-      assert.equal((home.match(/class="startup-card /g) ?? []).length, 2);
+      assert.ok(home.includes(`4 ${t('startups encontradas')}`));
+      assert.equal((home.match(/class="startup-card /g) ?? []).length, 4);
       assert.ok(home.includes(t(theme === 'dark' ? 'Ativar modo claro' : 'Ativar modo escuro')));
       const preferences = React.createElement(Preferences, { key: 'preferences', theme, language, t, setTheme() {}, setLanguage() {} });
       for (const startup of startups) {
         const detail = renderToStaticMarkup(React.createElement(StartupDetail, { startup, language, t, preferences, onBack() {} }));
         assert.ok(detail.includes(getLocalizedText(startup.headline, language).emphasis));
-        assert.equal((detail.match(/class="team-member"/g) ?? []).length, 3);
+        assert.equal((detail.match(/class="team-member"/g) ?? []).length, startup.teamMembers.length);
         assert.equal((detail.match(/<li>/g) ?? []).length, 3);
         assert.ok(detail.includes(`>${t('Voltar')}</button>`));
         for (const member of startup.teamMembers) {
@@ -76,11 +76,13 @@ try {
         }
         assert.equal(getLocalizedText(startup.paragraphs, language).length, 2);
         assert.ok(home.includes(getLocalizedText(startup.description, language)));
-        assert.ok(detail.includes('target="_blank" rel="noreferrer"'));
+        if (Object.values(startup.socials).some(link => link && !link.startsWith('#'))) {
+          assert.ok(detail.includes('target="_blank" rel="noreferrer"'));
+        }
       }
       for (const category of categories) {
         const filtered = category === 'Todas' ? startups : startups.filter(s => s.category === category);
-        assert.equal(filtered.length, ['Todas', 'Tecnologia'].includes(category) ? 2 : 0);
+        assert.equal(filtered.length, ['Todas', 'Tecnologia'].includes(category) ? 4 : 0);
         assert.ok(home.includes(t(category)));
       }
     }
@@ -124,7 +126,7 @@ try {
   vm.runInNewContext(bootstrap, { document, localStorage });
   assert.equal(document.documentElement.dataset.theme, 'dark');
   assert.equal(document.documentElement.lang, 'pt-BR');
-  console.log('PASS: PT/EN × dark/light rendering, both startups, filter data, translated content, preferences and pre-paint defaults.');
+  console.log('PASS: PT/EN × dark/light rendering, all startups, filter data, translated content, preferences and pre-paint defaults.');
 } finally {
   delete globalThis.localStorage;
 }

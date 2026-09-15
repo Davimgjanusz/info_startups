@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" role="img" aria-labelledby="title desc">
+  <title id="title">Logo Faços</title>
+  <desc id="desc">Símbolo de localização e conexão em formato de caminho.</desc>
+  <rect width="220" height="220" rx="44" fill="#facc15"/>
+  <g fill="none" stroke="#292524" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke-width="17" d="M56 126 128 168"/>
+    <path stroke-width="17" d="M54 160 96 184"/>
+    <path stroke-width="17" d="M49 92 150 151"/>
+    <path stroke-width="17" d="M126 128c28 7 47-4 55-29 3-8 13-8 17-1 4 9 1 25-11 38-16 17-40 23-69 14"/>
+    <path stroke-width="13" d="M116 34c-22 0-40 18-40 39 0 29 40 64 40 64s40-35 40-64c0-21-18-39-40-39Z"/>
+    <circle stroke-width="12" cx="116" cy="73" r="15"/>
+  </g>
+</svg>
