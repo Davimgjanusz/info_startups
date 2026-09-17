@@ -12,7 +12,7 @@ globalThis.localStorage = {
   getItem: key => storage.get(key) ?? null,
   setItem: (key, value) => storage.set(key, value),
 };
-const dependencies = ['react', 'react/jsx-runtime', 'react/jsx-dev-runtime', 'lucide-react', 'three', 'three/addons/controls/OrbitControls.js', '@supabase/supabase-js'];
+const dependencies = ['react', 'react/jsx-runtime', 'react/jsx-dev-runtime', 'lucide-react', 'three', 'three/addons/controls/OrbitControls.js'];
 const result = await build({
   configFile: false,
   plugins: [{
@@ -38,8 +38,11 @@ try {
   const { App, StartupDetail, Preferences, AnimatedHeadline, startupsByYear } = await import(`data:text/javascript;base64,${Buffer.from(code).toString('base64')}`);
   const startups = startupsByYear['2026'];
   const catalog = { startupsByYear, years: Object.keys(startupsByYear).sort((first, second) => second.localeCompare(first)) };
-  assert.equal(startups.length, 5);
-  assert.deepEqual(startups.map(s => s.id), ['appono', 'selectio', 'bixuco', 'facos', 'condomit']);
+  const defaultHome = renderToStaticMarkup(React.createElement(App));
+  assert.ok(defaultHome.includes('RECURE'));
+  assert.equal((defaultHome.match(/class="startup-card /g) ?? []).length, startups.length);
+  assert.equal(startups.length, 6);
+  assert.deepEqual(startups.map(s => s.id), ['appono', 'selectio', 'bixuco', 'facos', 'condomit', 'recure']);
 
   for (const language of ['pt', 'en']) {
     for (const theme of ['dark', 'light']) {

@@ -15,6 +15,12 @@ import bixucoSophia from '../assets/bixuco-sophia.png';
 import bixucoYasmin from '../assets/bixuco-yasmin.png';
 import facosLogo from '../assets/facos-logo.svg';
 import condomitLogo from '../assets/condomit-logo.png';
+import recureLogo from '../assets/recure-logo.png';
+import recureTeam from '../assets/recure-equipe.jpg';
+import recureFernando from '../assets/recure-fernando.jpg';
+import recurePedro from '../assets/recure-pedro.jpg';
+import recureRafael from '../assets/recure-rafael.jpg';
+import recureDaniel from '../assets/recure-daniel.jpg';
 
 const selectio = {
   id: 'selectio',
@@ -220,6 +226,40 @@ const startupSource = {
         website: 'https://condomit.netlify.app/',
       },
     },
+    {
+      id: 'recure',
+      name: 'RECURE',
+      category: 'Tecnologia',
+      number: '06',
+      description: 'Plataforma digital de fisioterapia que conecta profissionais e pacientes durante a recuperação.',
+      accent: 'recure',
+      tags: ['Fisioterapia', 'Tratamento', 'Evolução'],
+      logo: recureLogo,
+      teamImage: recureTeam,
+      tagline: 'Fisioterapia · acompanhamento · evolução',
+      segment: 'fisioterapia digital',
+      headline: { text: 'Recuperação com', emphasis: 'acompanhamento.' },
+      paragraphs: [
+        'A RECURE é uma plataforma digital para fisioterapia que conecta profissionais e pacientes. Ela facilita o acompanhamento dos tratamentos e a realização dos exercícios ao longo da recuperação.',
+        'A solução também ajuda a monitorar a evolução de cada paciente, com a proposta de tornar o processo de recuperação mais eficiente, prático e motivador.',
+      ],
+      features: [
+        { title: 'Conexão profissional-paciente', description: 'Um espaço digital para acompanhar o tratamento de fisioterapia.' },
+        { title: 'Exercícios acompanhados', description: 'Apoio para realizar os exercícios durante a recuperação.' },
+        { title: 'Evolução monitorada', description: 'Visibilidade do progresso para pacientes e profissionais.' },
+      ],
+      teamMembers: [
+        { name: 'Fernando Bolonha', role: 'Desenvolvedor full stack', image: recureFernando },
+        { name: 'Pedro de Macedo', role: 'Desenvolvedor full stack', image: recurePedro },
+        { name: 'Rafael Rodrigues', role: 'Diretor de Marketing', image: recureRafael },
+        { name: 'Daniel Martins', role: 'Diretor Financeiro', image: recureDaniel },
+      ],
+      socials: {
+        instagram: 'https://www.instagram.com/recure.fisio/',
+        linkedin: 'https://www.linkedin.com/company/recurephysio/about/',
+        website: 'https://recurephysio.com/',
+      },
+    },
   ],
 };
 
@@ -308,6 +348,23 @@ const englishContent = {
       { title: 'Clearer management', description: 'Organized information and processes for residents, managers and administrators.' },
     ],
     roles: ['CEO · Full stack development', 'CMO · Marketing, finance and front end', 'COO · Operations, documentation and back end'],
+  },
+  recure: {
+    description: 'A digital physiotherapy platform connecting professionals and patients throughout recovery.',
+    tags: ['Physiotherapy', 'Treatment', 'Progress'],
+    tagline: 'Physiotherapy · follow-up · progress',
+    segment: 'digital physiotherapy',
+    headline: { text: 'Recovery with', emphasis: 'guidance.' },
+    paragraphs: [
+      'RECURE is a digital physiotherapy platform connecting professionals and patients. It helps them follow treatment plans and complete exercises throughout recovery.',
+      'The solution also helps monitor each patient’s progress, aiming to make recovery more efficient, practical and motivating.',
+    ],
+    features: [
+      { title: 'Professional-patient connection', description: 'A digital space to follow physiotherapy treatment.' },
+      { title: 'Guided exercises', description: 'Support for completing exercises during recovery.' },
+      { title: 'Progress tracking', description: 'Visibility into recovery progress for patients and professionals.' },
+    ],
+    roles: ['Full stack developer', 'Full stack developer', 'Marketing Director', 'Finance Director'],
   },
 };
 

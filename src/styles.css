@@ -693,6 +693,40 @@ h2 { font-size: clamp(2.5rem, 5vw, 5.2rem); line-height: .98; letter-spacing: -.
 [data-theme="light"] .startup-detail-page--condomit .eyebrow-line { background: #0b3eaa; }
 [data-theme="light"] .startup-detail-page--condomit .team-avatar { background: #0b3eaa; }
 [data-theme="light"] .startup-detail-page--condomit .member-socials a { color: #0b3eaa; border-color: rgba(11, 62, 170, .4); }
+.startup-card--recure { --card-glow: #ff7627; --card-accent: #ff7627; background: linear-gradient(145deg, transparent 48%, rgba(40, 123, 249, .16)), var(--card-background); }
+.startup-card--recure .card-symbol { width: 100%; height: 150px; margin: 32px 0 24px; overflow: hidden; border: 1px solid rgba(40, 123, 249, .35); background: #fff; }
+.startup-card--recure .startup-card-logo { width: 100%; height: 100%; max-width: none; max-height: none; object-fit: contain; filter: none; }
+.startup-card--recure .card-bottom button { background: #ff7627; color: #1b1f24; }
+.startup-detail-page--recure { --blue: #287bf9; --cyan: #ff7627; --ink: #f5f7fa; --muted: #cad5e3; --line: rgba(40, 123, 249, .28); --panel: #15243e; background: linear-gradient(135deg, #141a24 0%, #07143d 42%, #0a2d65 78%, #12314a 100%); }
+.startup-detail-page--recure .detail-visual { background: linear-gradient(150deg, #0c1427 0%, #132f5f 60%, #4b2520 100%); border-color: rgba(40, 123, 249, .38); }
+.startup-detail-page--recure .detail-brand-panel { background: #fff; }
+.startup-detail-page--recure .detail-brand-panel img { width: 145px; height: 130px; }
+.startup-detail-page--recure .detail-brand-panel span { color: #051367; }
+.startup-detail-page--recure .detail-copy h1 em,
+.startup-detail-page--recure .eyebrow,
+.startup-detail-page--recure .brand strong { color: #ff7627; }
+.startup-detail-page--recure .eyebrow-line { background: #ff7627; }
+.startup-detail-page--recure .team-gallery { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: minmax(280px, 1fr) auto; gap: 24px 10px; padding: 8px 20px 30px; background: linear-gradient(155deg, #091936 0%, #173a6b 60%, #4b2825 100%); }
+.startup-detail-page--recure .team-photo--group { object-position: center 28%; filter: none; border: 1px solid rgba(40, 123, 249, .32); }
+.startup-detail-page--recure .team-member { gap: 7px; }
+.startup-detail-page--recure .team-photo--portrait { width: min(132px, 100%); object-position: center 18%; image-orientation: from-image; border-color: #ff7627; filter: none; box-shadow: 0 10px 28px rgba(0, 0, 0, .32); }
+.startup-detail-page--recure .team-member strong { font-size: 12px; }
+.startup-detail-page--recure .team-member span { font-size: 9px; }
+[data-theme="light"] .startup-card--recure { --card-accent: #bb4a10; background: linear-gradient(145deg, transparent 48%, rgba(40, 123, 249, .12)), var(--card-background); }
+[data-theme="light"] .startup-detail-page--recure { --blue: #127cfc; --cyan: #ad3d0b; --ink: #1b1f24; --muted: #37475d; --line: rgba(5, 19, 103, .18); --panel: #e3eaf6; background: linear-gradient(135deg, #f5f7fa 0%, #d6e6ff 52%, #b9d7ff 100%); }
+[data-theme="light"] .startup-detail-page--recure .detail-visual { background: linear-gradient(155deg, #fff 0%, #d2e4ff 55%, #ffd2bd 100%); border-color: rgba(5, 19, 103, .2); }
+[data-theme="light"] .startup-detail-page--recure .team-gallery { background: linear-gradient(155deg, #edf3ff 0%, #bfd7ff 60%, #ffd6c1 100%); }
+[data-theme="light"] .startup-detail-page--recure .detail-copy h1 em,
+[data-theme="light"] .startup-detail-page--recure .eyebrow,
+[data-theme="light"] .startup-detail-page--recure .brand strong { color: #ad3d0b; }
+[data-theme="light"] .startup-detail-page--recure .eyebrow-line { background: #ad3d0b; }
+[data-theme="light"] .startup-detail-page--recure .team-photo--portrait { box-shadow: 0 10px 26px rgba(5, 19, 103, .18); }
+@media (max-width: 680px) {
+  .startup-detail-page--recure .team-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto; gap: 26px 10px; padding: 8px 14px 26px; }
+  .startup-detail-page--recure .team-photo--portrait { width: min(144px, 100%); }
+  .startup-detail-page--recure .team-member strong { font-size: 12px; }
+  .startup-detail-page--recure .team-member span { font-size: 9px; }
+}
 @media (max-width: 680px) {
   .startup-detail-page--condomit .detail-brand-panel { gap: 8px; }
   .startup-detail-page--condomit .detail-brand-panel img { width: 130px; height: 90px; transform: scale(1.2); }

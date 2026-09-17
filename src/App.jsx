@@ -1,4 +1,4 @@
-import { lazy, Suspense, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useLayoutEffect, useRef, useState } from 'react';
 import { ArrowUpRight, ChevronDown, Menu, X } from 'lucide-react';
 import BrandMark from './components/BrandMark';
 import StartupDetail from './components/StartupDetail';
@@ -7,11 +7,12 @@ import { accessibleText, getLocalizedText, heroHeadlines, translate } from './da
 import AnimatedHeadline from './components/AnimatedHeadline';
 import useHeaderScroll from './hooks/useHeaderScroll';
 import { readPreference, savePreference } from './data/preferences';
-import { EMPTY_CATALOG, fetchStartupCatalog } from './services/startups';
+import { startupsByYear, years } from './data/startups';
 
 const HeroBulb3D = lazy(() => import('./components/HeroBulb3D'));
+const localCatalog = { startupsByYear, years };
 
-function App({ initialCatalog = null, catalogLoader = fetchStartupCatalog }) {
+function App({ initialCatalog = localCatalog }) {
   const headerScrolled = useHeaderScroll();
   const [theme, setTheme] = useState(() => readPreference('info-startups-theme', ['dark', 'light'], 'dark'));
   const [language, setLanguage] = useState(() => readPreference('info-startups-language', ['pt', 'en'], 'pt'));
@@ -34,9 +35,8 @@ function App({ initialCatalog = null, catalogLoader = fetchStartupCatalog }) {
     savePreference('info-startups-language', language);
   }, [language]);
 
-  const [catalog, setCatalog] = useState(() => initialCatalog ?? EMPTY_CATALOG);
-  const [catalogStatus, setCatalogStatus] = useState(() => initialCatalog ? 'ready' : 'loading');
-  const [activeYear, setActiveYear] = useState(() => initialCatalog?.years?.[0] ?? '');
+  const catalog = initialCatalog;
+  const [activeYear, setActiveYear] = useState(() => catalog.years[0] ?? '');
   const [menuOpen, setMenuOpen] = useState(false);
   const [selectedStartup, setSelectedStartup] = useState(null);
   const returnPosition = useRef(0);
@@ -56,25 +56,6 @@ function App({ initialCatalog = null, catalogLoader = fetchStartupCatalog }) {
       window.scrollTo({ top: returnPosition.current, behavior: 'instant' });
     }
   }, [selectedStartup]);
-
-  const loadCatalog = useCallback(async () => {
-    setCatalogStatus('loading');
-    try {
-      const nextCatalog = await catalogLoader();
-      setCatalog(nextCatalog);
-      setCatalogStatus('ready');
-    } catch {
-      setCatalogStatus('error');
-    }
-  }, [catalogLoader]);
-
-  useEffect(() => {
-    if (!initialCatalog) loadCatalog();
-  }, [initialCatalog, loadCatalog]);
-
-  useEffect(() => {
-    if (!activeYear && catalog.years.length) setActiveYear(catalog.years[0]);
-  }, [activeYear, catalog.years]);
 
   const openStartup = (startup) => {
     returnPosition.current = window.scrollY;
@@ -155,7 +136,7 @@ function App({ initialCatalog = null, catalogLoader = fetchStartupCatalog }) {
           </div>
         </div>
         <div className="metrics" aria-label={t('Números do projeto')}>
-          <div><strong>{catalogStatus === 'ready' ? String(startups.length).padStart(2, '0') : '—'}</strong><span>{t('startups em')} {activeYear || '—'}</span></div>
+          <div><strong>{String(startups.length).padStart(2, '0')}</strong><span>{t('startups em')} {activeYear || '—'}</span></div>
           <div><strong>19</strong><span>{t('alunos envolvidos')}</span></div>
           <div><strong>∞</strong><span>{t('possibilidades abertas')}</span></div>
         </div>
@@ -166,23 +147,16 @@ function App({ initialCatalog = null, catalogLoader = fetchStartupCatalog }) {
           <div><p className="eyebrow"><span className="eyebrow-line" /> {t('acervo de projetos')}</p><h2>{t('Ideias com')} <span>{t('nome próprio.')}</span></h2></div>
           <p>{t('Explore as soluções criadas pelas diferentes turmas do curso.')}</p>
         </div>
-        {catalogStatus === 'loading' && <p className="catalog-state" role="status">{t('Carregando startups...')}</p>}
-        {catalogStatus === 'error' && (
-          <div className="empty-state" role="alert">
-            <p>{t('Não foi possível carregar as startups.')}</p>
-            <button type="button" className="button button--primary" onClick={loadCatalog}>{t('Tentar novamente')}</button>
-          </div>
-        )}
-        {catalogStatus === 'ready' && catalog.years.length > 0 && (
+        {catalog.years.length > 0 && (
           <div className="year-bar" role="group" aria-label={t('Selecionar ano da turma')}>
             <span className="year-label">{t('Turma')}</span>
             {catalog.years.map((year) => <button key={year} className={activeYear === year ? 'year-button active' : 'year-button'} aria-pressed={activeYear === year} onClick={() => setActiveYear(year)}>{year}</button>)}
             <button className="year-button year-button--future" type="button" disabled>{t('Próximas turmas +')}</button>
           </div>
         )}
-        {catalogStatus === 'ready' && !catalog.years.length && <p className="empty-state">{t('Nenhuma startup publicada no momento.')}</p>}
-        {catalogStatus === 'ready' && catalog.years.length > 0 && !startups.length && <p className="empty-state">{t('Nenhuma startup publicada nesta turma.')}</p>}
-        {catalogStatus === 'ready' && startups.length > 0 && <div className="startup-grid">
+        {!catalog.years.length && <p className="empty-state">{t('Nenhuma startup publicada no momento.')}</p>}
+        {catalog.years.length > 0 && !startups.length && <p className="empty-state">{t('Nenhuma startup publicada nesta turma.')}</p>}
+        {startups.length > 0 && <div className="startup-grid">
           {startups.map((startup) => (
             <article className={`startup-card startup-card--${startup.accent} startup-card--featured`} key={startup.id}>
               <div className="card-top"><span className="card-number">{startup.number}</span><span className="card-category">{t(startup.category)}</span><ArrowUpRight className="card-arrow" size={19} /></div>

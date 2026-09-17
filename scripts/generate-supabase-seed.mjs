@@ -16,6 +16,10 @@ const assetPaths = {
   },
   facos: { logo: 'facos/logo.svg', team: null, members: [] },
   condomit: { logo: 'condomit/logo.png', team: null, members: [null, null, null] },
+  recure: {
+    logo: 'recure/logo.png', team: 'recure/team.jpg',
+    members: ['recure/members/fernando-bolonha.jpg', 'recure/members/pedro-de-macedo.jpg', 'recure/members/rafael-rodrigues.jpg', 'recure/members/daniel-martins.jpg'],
+  },
 };
 
 const quote = (value) => value == null ? 'null' : `'${String(value).replaceAll("'", "''")}'`;

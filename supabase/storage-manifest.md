@@ -21,5 +21,11 @@ Upload the current files to the public `startup-assets` bucket using these objec
 | `src/assets/bixuco-yasmin.png` | `bixuco/members/yasmin-bertoni.png` |
 | `src/assets/facos-logo.svg` | `facos/logo.svg` |
 | `src/assets/condomit-logo.png` | `condomit/logo.png` |
+| `src/assets/recure-logo.png` | `recure/logo.png` |
+| `src/assets/recure-equipe.jpg` | `recure/team.jpg` |
+| `src/assets/recure-fernando.jpg` | `recure/members/fernando-bolonha.jpg` |
+| `src/assets/recure-pedro.jpg` | `recure/members/pedro-de-macedo.jpg` |
+| `src/assets/recure-rafael.jpg` | `recure/members/rafael-rodrigues.jpg` |
+| `src/assets/recure-daniel.jpg` | `recure/members/daniel-martins.jpg` |
 
 The seed stores these object keys in the `*_url` columns. The application resolves them to public URLs through the configured Supabase project URL.
