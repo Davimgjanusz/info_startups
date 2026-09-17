@@ -14,6 +14,7 @@ export default function StartupDetail({ startup, language, t, preferences, headi
   const headline = localize(startup.headline) || {};
   const paragraphs = localize(startup.paragraphs) || [];
   const features = localize(startup.features) || [];
+  const teamWithoutPhoto = !startup.teamImage && startup.teamMembers.length > 0;
   return (
     <main className={`startup-detail-page startup-detail-page--${startup.accent}`}>
       <header className="site-header detail-header">
@@ -33,11 +34,13 @@ export default function StartupDetail({ startup, language, t, preferences, headi
               : <strong className="logo-placeholder">{startup.name}</strong>}
             {localize(startup.tagline) && <span>{localize(startup.tagline)}</span>}
           </div>
-          <div className="team-gallery">
-            <Photo t={t} className="team-photo--group" src={startup.teamImage} alt={a11y.team(startup.name)} />
+          <div className={`team-gallery${teamWithoutPhoto ? ' team-gallery--profiles-only' : ''}`}>
+            {!teamWithoutPhoto && <Photo t={t} className="team-photo--group" src={startup.teamImage} alt={a11y.team(startup.name)} />}
             {startup.teamMembers.map((member) => (
               <div className="team-member" key={member.name}>
-                <Photo t={t} className="team-photo--portrait" src={member.image} alt={member.name} />
+                {member.image
+                  ? <Photo t={t} className="team-photo--portrait" src={member.image} alt={member.name} />
+                  : <div className="team-avatar" aria-hidden="true">{member.name.slice(0, 1)}</div>}
                 <strong>{member.name}</strong>
                 {localize(member.role) && <span>{localize(member.role)}</span>}
                 <SocialLinks links={member} name={member.name} language={language} t={t} compact />

@@ -15,6 +15,7 @@ const assetPaths = {
     members: ['bixuco/members/arthur-regiani.png', 'bixuco/members/sophia-freitas.png', 'bixuco/members/yasmin-bertoni.png'],
   },
   facos: { logo: 'facos/logo.svg', team: null, members: [] },
+  condomit: { logo: 'condomit/logo.png', team: null, members: [null, null, null] },
 };
 
 const quote = (value) => value == null ? 'null' : `'${String(value).replaceAll("'", "''")}'`;

@@ -90,7 +90,7 @@ h2 { font-size: clamp(2.5rem, 5vw, 5.2rem); line-height: .98; letter-spacing: -.
 .year-button { padding: 8px 14px; color: var(--muted); background: var(--panel); border: 1px solid var(--line); cursor: pointer; font: 11px var(--mono); transition: .25s; }
 .year-button:hover, .year-button.active { color: var(--on-accent); background: var(--cyan); border-color: var(--cyan); }
 .year-button--future { color: var(--muted); border-style: dashed; cursor: not-allowed; }
-.startup-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.startup-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
 .startup-card { min-height: 345px; display: flex; flex-direction: column; padding: 21px; background: var(--card-background); border: 1px solid var(--line); position: relative; overflow: hidden; transition: transform .3s, border-color .3s; }
 .startup-card::before { content: ''; position: absolute; width: 180px; height: 180px; top: -60px; right: -70px; border-radius: 50%; background: var(--card-glow); filter: blur(55px); opacity: .3; }
 .startup-card:hover { transform: translateY(-7px); border-color: rgba(139, 232, 255, .7); }
@@ -204,13 +204,32 @@ h2 { font-size: clamp(2.5rem, 5vw, 5.2rem); line-height: .98; letter-spacing: -.
   object-position: center 18%;
   background: linear-gradient(135deg, var(--bixuco-white), #dfeaf4);
   border-color: rgba(24, 171, 234, .82);
-  box-shadow: 0 10px 28px rgba(4, 12, 18, .48), 0 0 0 6px rgba(24, 171, 234, .12);
+  filter: saturate(.98) contrast(1.08);
+  border-width: 4px;
+  box-shadow: 0 18px 38px rgba(4, 12, 18, .58), 0 0 0 8px rgba(24, 171, 234, .16), 0 0 30px rgba(198, 255, 109, .14);
 }
 .startup-detail-page--bixuco .team-photo--group {
   background:
     linear-gradient(135deg, rgba(255, 255, 255, .96), rgba(200, 209, 217, .9)),
     var(--bixuco-ice);
   border: 1px solid rgba(24, 171, 234, .18);
+}
+.startup-detail-page--bixuco .team-gallery {
+  gap: 28px 12px;
+  padding-inline: 16px;
+}
+.startup-detail-page--bixuco .team-member {
+  gap: 9px;
+  padding: 10px 6px 0;
+}
+.startup-detail-page--bixuco .team-member strong {
+  margin-top: 8px;
+  color: var(--bixuco-white);
+  font-size: 12px;
+  line-height: 1.2;
+}
+.startup-detail-page--bixuco .team-member span {
+  color: rgba(245, 247, 251, .78);
 }
 .startup-detail-page--bixuco .detail-copy h1 em { color: var(--bixuco-light); text-shadow: 0 0 22px rgba(37, 227, 255, .18); }
 .startup-detail-page--bixuco .eyebrow,
@@ -633,6 +652,53 @@ h2 { font-size: clamp(2.5rem, 5vw, 5.2rem); line-height: .98; letter-spacing: -.
 .detail-section > * { min-width: 0; }
 .team-photo--portrait { width: min(170px, 100%); height: auto; aspect-ratio: 1; }
 .team-member strong { white-space: normal; overflow-wrap: anywhere; }
+.startup-detail-page--bixuco .team-gallery {
+  gap: 28px 12px;
+  padding-inline: 16px;
+}
+.startup-detail-page--bixuco .team-photo--portrait {
+  width: min(190px, 100%);
+  object-position: center 16%;
+  background: linear-gradient(135deg, var(--bixuco-white), #dfeaf4);
+  filter: saturate(.98) contrast(1.08);
+  border-color: rgba(24, 171, 234, .82);
+  border-width: 4px;
+  box-shadow: 0 18px 38px rgba(4, 12, 18, .58), 0 0 0 8px rgba(24, 171, 234, .16), 0 0 30px rgba(198, 255, 109, .14);
+}
+.startup-card--condomit { --card-glow: #00d5c7; --card-accent: #00d5c7; background: linear-gradient(145deg, transparent 42%, rgba(0, 213, 199, .12)), var(--card-background); }
+.startup-card--condomit .card-symbol { width: 100%; height: 150px; margin: 32px 0 24px; overflow: hidden; border: 1px solid rgba(0, 213, 199, .35); background: #fff; }
+.startup-card--condomit .startup-card-logo { width: 100%; max-width: none; max-height: none; height: 100%; object-fit: cover; transform: scale(1.55); filter: none; }
+.startup-card--condomit .card-bottom button { background: #00d5c7; }
+.startup-detail-page--condomit { --blue: #018cbb; --cyan: #00d5c7; --ink: #fefefe; --muted: #d5e9ed; --line: rgba(0, 213, 199, .22); --panel: #102c38; background: linear-gradient(135deg, #04162c 0%, #0a2554 42%, #0a3949 76%, #062b34 100%); }
+.startup-detail-page--condomit .detail-visual { background: linear-gradient(155deg, #0b2b50 0%, #0e2632 58%, #0a4247 100%); border-color: rgba(0, 213, 199, .3); }
+.startup-detail-page--condomit .detail-brand-panel { background: #fff; }
+.startup-detail-page--condomit .detail-brand-panel img { width: 190px; height: 120px; object-fit: cover; transform: scale(1.24); }
+.startup-detail-page--condomit .detail-brand-panel span { color: #002174; }
+.startup-detail-page--condomit .detail-copy h1 em,
+.startup-detail-page--condomit .eyebrow,
+.startup-detail-page--condomit .brand strong { color: #00d5c7; }
+.startup-detail-page--condomit .eyebrow-line { background: #00d5c7; }
+.startup-detail-page--condomit .team-gallery--profiles-only { grid-template-rows: 1fr; gap: 14px; padding: 24px; }
+.startup-detail-page--condomit .team-member { align-self: center; gap: 12px; }
+.startup-detail-page--condomit .team-member strong { font-size: 15px; }
+.startup-detail-page--condomit .team-member span { font-size: 10px; }
+.team-avatar { display: grid; place-items: center; width: min(150px, 100%); aspect-ratio: 1; border-radius: 50%; border: 3px solid #00d5c7; background: #0b3eaa; color: #fff; font-size: 58px; font-weight: 600; }
+.startup-detail-page--condomit .member-socials a { width: 34px; height: 34px; border-color: rgba(0, 213, 199, .5); color: #00d5c7; }
+[data-theme="light"] .startup-card--condomit { background: linear-gradient(145deg, transparent 42%, rgba(0, 213, 199, .2)), var(--card-background); }
+[data-theme="light"] .startup-detail-page--condomit { --blue: #0b3eaa; --cyan: #018cbb; --ink: #141414; --muted: #385662; --line: rgba(11, 62, 170, .2); --panel: #e6f5f6; background: linear-gradient(135deg, #fefefe 0%, #e6f5f6 48%, #c9efef 100%); }
+[data-theme="light"] .startup-detail-page--condomit .detail-visual { background: linear-gradient(155deg, #fefefe 0%, #dbeef4 54%, #b7e8e7 100%); border-color: rgba(11, 62, 170, .2); }
+[data-theme="light"] .startup-detail-page--condomit .detail-copy h1 em,
+[data-theme="light"] .startup-detail-page--condomit .eyebrow,
+[data-theme="light"] .startup-detail-page--condomit .brand strong { color: #0b3eaa; }
+[data-theme="light"] .startup-detail-page--condomit .eyebrow-line { background: #0b3eaa; }
+[data-theme="light"] .startup-detail-page--condomit .team-avatar { background: #0b3eaa; }
+[data-theme="light"] .startup-detail-page--condomit .member-socials a { color: #0b3eaa; border-color: rgba(11, 62, 170, .4); }
+@media (max-width: 680px) {
+  .startup-detail-page--condomit .detail-brand-panel { gap: 8px; }
+  .startup-detail-page--condomit .detail-brand-panel img { width: 130px; height: 90px; transform: scale(1.2); }
+  .startup-detail-page--condomit .team-gallery--profiles-only { grid-template-columns: 1fr; gap: 32px; }
+  .startup-detail-page--condomit .team-avatar { width: 120px; font-size: 46px; }
+}
 @media (min-width: 681px) and (max-width: 1050px) {
   .detail-section { grid-template-columns: 1fr; }
   .detail-copy { max-width: none; }
@@ -868,7 +934,7 @@ h2 { font-size: clamp(2.5rem, 5vw, 5.2rem); line-height: .98; letter-spacing: -.
 [data-theme="light"] .startup-detail-page--bixuco .detail-features strong { color: #0d2f2a; }
 [data-theme="light"] .startup-detail-page--bixuco .team-photo--portrait {
   border-color: rgba(29, 143, 106, .58);
-  box-shadow: 0 10px 24px rgba(11, 43, 34, .14), 0 0 0 6px rgba(29, 143, 106, .08);
+  box-shadow: 0 16px 34px rgba(11, 43, 34, .2), 0 0 0 8px rgba(29, 143, 106, .1), 0 0 28px rgba(24, 171, 234, .14);
 }
 [data-theme="light"] .startup-detail-page--bixuco .team-photo--group {
   background:
@@ -1035,6 +1101,7 @@ h2 { font-size: clamp(2.5rem, 5vw, 5.2rem); line-height: .98; letter-spacing: -.
   .team-gallery { grid-template-columns: 1fr; grid-template-rows: auto; gap: 28px; }
   .team-photo--group { height: auto; max-height: 400px; }
   .team-photo--portrait { width: 130px; }
+  .startup-detail-page--bixuco .team-photo--portrait { width: 156px; }
   .team-member strong { font-size: 13px; }
   .team-member span { font-size: 11px; }
   .member-socials { gap: 8px; }

@@ -20,5 +20,6 @@ Upload the current files to the public `startup-assets` bucket using these objec
 | `src/assets/bixuco-sophia.png` | `bixuco/members/sophia-freitas.png` |
 | `src/assets/bixuco-yasmin.png` | `bixuco/members/yasmin-bertoni.png` |
 | `src/assets/facos-logo.svg` | `facos/logo.svg` |
+| `src/assets/condomit-logo.png` | `condomit/logo.png` |
 
 The seed stores these object keys in the `*_url` columns. The application resolves them to public URLs through the configured Supabase project URL.

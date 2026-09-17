@@ -38,8 +38,8 @@ try {
   const { App, StartupDetail, Preferences, AnimatedHeadline, startupsByYear } = await import(`data:text/javascript;base64,${Buffer.from(code).toString('base64')}`);
   const startups = startupsByYear['2026'];
   const catalog = { startupsByYear, years: Object.keys(startupsByYear).sort((first, second) => second.localeCompare(first)) };
-  assert.equal(startups.length, 4);
-  assert.deepEqual(startups.map(s => s.id), ['appono', 'selectio', 'bixuco', 'facos']);
+  assert.equal(startups.length, 5);
+  assert.deepEqual(startups.map(s => s.id), ['appono', 'selectio', 'bixuco', 'facos', 'condomit']);
 
   for (const language of ['pt', 'en']) {
     for (const theme of ['dark', 'light']) {
@@ -58,7 +58,7 @@ try {
       assert.ok(headline.includes('aria-hidden="true"'));
       assert.ok(!headline.includes('aria-live'));
       assert.equal((headline.match(/class="headline-measure"/g) ?? []).length, 4);
-      assert.equal((home.match(/class="startup-card /g) ?? []).length, 4);
+      assert.equal((home.match(/class="startup-card /g) ?? []).length, startups.length);
       assert.ok(home.includes(`>19</strong><span>${t('alunos envolvidos')}</span>`));
       assert.ok(!home.includes('filter-bar'));
       assert.ok(home.includes(t(theme === 'dark' ? 'Ativar modo claro' : 'Ativar modo escuro')));

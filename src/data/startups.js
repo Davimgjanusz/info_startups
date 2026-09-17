@@ -14,6 +14,7 @@ import bixucoArthur from '../assets/bixuco-arthur.png';
 import bixucoSophia from '../assets/bixuco-sophia.png';
 import bixucoYasmin from '../assets/bixuco-yasmin.png';
 import facosLogo from '../assets/facos-logo.svg';
+import condomitLogo from '../assets/condomit-logo.png';
 
 const selectio = {
   id: 'selectio',
@@ -61,6 +62,7 @@ const selectio = {
   socials: {
     instagram: 'https://www.instagram.com/selectio_/',
     linkedin: 'https://www.linkedin.com/company/selectioltda/posts/?feedView=all',
+    website: 'https://selectio.app.br/',
   },
 };
 
@@ -111,7 +113,7 @@ const startupSource = {
       socials: {
         instagram: 'https://www.instagram.com/appono.br/',
         linkedin: 'https://linkedin.com/company/appono-br/',
-        website: '#contato',
+        website: 'https://appono.vercel.app/',
       },
     },
     selectio,
@@ -140,18 +142,24 @@ const startupSource = {
       teamMembers: [
         {
           name: 'Arthur Regiani Delgado Rosa De Oliveira', role: 'Membro da equipe', image: bixucoArthur,
+          linkedin: 'https://www.linkedin.com/search/results/people/?keywords=Arthur%20Regiani',
           email: 'a.regianidelgado@gmail.com',
         },
         {
           name: 'Sophia Silva Freitas', role: 'Membro da equipe', image: bixucoSophia,
+          linkedin: 'https://www.linkedin.com/search/results/people/?keywords=Sophia%20Freitas',
           email: 'suelisophia21@gmail.com',
         },
         {
           name: 'Yasmin Bertoni', role: 'Membro da equipe', image: bixucoYasmin,
+          linkedin: 'https://www.linkedin.com/search/results/people/?keywords=Yasmin%20Bertoni',
           email: 'bertoniyasmin@gmail.com',
         },
       ],
-      socials: {},
+      socials: {
+        instagram: 'https://www.instagram.com/bixu.co/',
+        linkedin: 'https://www.linkedin.com/in/bixuco-oficial-4500b1402/',
+      },
     },
     {
       id: 'facos',
@@ -178,7 +186,38 @@ const startupSource = {
       socials: {
         instagram: 'https://www.instagram.com/facos.oficial?stkn=MTU0cm5ibHpvejI1YQ==',
         github: 'https://github.com/Pedro-Arruda-Az/Fa-os',
-        website: 'https://canva.link/gp4pe4iv9geyxka',
+        website: 'https://facos.netlify.app/',
+      },
+    },
+    {
+      id: 'condomit',
+      name: 'Condomit',
+      category: 'Tecnologia',
+      number: '05',
+      description: 'Plataforma digital que reúne comunicação, serviços e decisões para simplificar a gestão de condomínios.',
+      accent: 'condomit',
+      tags: ['Condomínios', 'Gestão', 'Comunicação'],
+      logo: condomitLogo,
+      tagline: 'O app do seu condomínio',
+      segment: 'gestão condominial',
+      headline: { text: 'Seu condomínio', emphasis: 'em um só lugar.' },
+      paragraphs: [
+        'A Condomit centraliza a comunicação, a gestão e os serviços do condomínio em um ambiente digital para síndicos, administradores e moradores. Comunicados, eventos, reservas, visitantes e manutenções ficam organizados na mesma plataforma.',
+        'Votações, reuniões e assembleias também fazem parte da proposta, facilitando a participação e a tomada de decisões. Ao reunir essas rotinas, a Condomit busca reduzir a dependência de grupos de mensagens, planilhas e processos manuais.',
+      ],
+      features: [
+        { title: 'Rotina integrada', description: 'Comunicados, eventos, reservas, visitantes e manutenção em um único ambiente.' },
+        { title: 'Decisões participativas', description: 'Votações, reuniões e assembleias conectadas à gestão do condomínio.' },
+        { title: 'Gestão mais clara', description: 'Informações e processos organizados para moradores, síndicos e administradores.' },
+      ],
+      teamMembers: [
+        { name: 'Giancarlo', role: 'CEO · Desenvolvimento full stack', instagram: 'https://www.instagram.com/gian.munarin/' },
+        { name: 'Gabriella', role: 'CMO · Marketing, finanças e front-end', instagram: 'https://www.instagram.com/Gab_l1no/' },
+        { name: 'Gustavo', role: 'COO · Operações, documentação e back-end', instagram: 'https://www.instagram.com/gustavolsilva09/' },
+      ],
+      socials: {
+        instagram: 'https://www.instagram.com/condomit.ofc/',
+        website: 'https://condomit.netlify.app/',
       },
     },
   ],
@@ -252,6 +291,23 @@ const englishContent = {
       { title: 'Trusted network', description: 'Organizes contacts, services and opportunities in a simple experience.' },
     ],
     roles: [],
+  },
+  condomit: {
+    description: 'A digital platform bringing communication, services and decisions together to simplify condominium management.',
+    tags: ['Condominiums', 'Management', 'Communication'],
+    tagline: 'Your condominium app',
+    segment: 'condominium management',
+    headline: { text: 'Your condominium', emphasis: 'in one place.' },
+    paragraphs: [
+      'Condomit brings condominium communication, management and services into one digital space for residents, managers and administrators. Announcements, events, bookings, visitors and maintenance are organized in the same platform.',
+      'Voting, meetings and assemblies are also part of the proposal, making participation and decisions easier. By bringing these routines together, Condomit aims to reduce reliance on messaging groups, spreadsheets and manual processes.',
+    ],
+    features: [
+      { title: 'Connected routines', description: 'Announcements, events, bookings, visitors and maintenance in one place.' },
+      { title: 'Shared decisions', description: 'Voting, meetings and assemblies connected to condominium management.' },
+      { title: 'Clearer management', description: 'Organized information and processes for residents, managers and administrators.' },
+    ],
+    roles: ['CEO · Full stack development', 'CMO · Marketing, finance and front end', 'COO · Operations, documentation and back end'],
   },
 };
 

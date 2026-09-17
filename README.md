@@ -43,7 +43,7 @@ Enquanto as variaveis nao existirem, o modo de desenvolvimento usa `src/data/sta
 npm run seed:supabase
 ```
 
-O seed e idempotente para as startups: ele atualiza cada `slug` e substitui os membros daquela startup. Ele preserva os dados atuais de Appono, Selectio, Bixuco e Facos, incluindo os textos PT/EN, membros, links, ordem e acentos visuais.
+O seed e idempotente para as startups: ele atualiza cada `slug` e substitui os membros daquela startup. Ele preserva os dados atuais de Appono, Selectio, Bixuco, Facos e Condomit, incluindo os textos PT/EN, membros, links, ordem e acentos visuais.
 
 ### Modelo de dados
 
