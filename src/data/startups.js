@@ -121,7 +121,7 @@ const startupSource = {
       category: 'Tecnologia',
       number: '03',
       description: 'Startup brasileira que combina produto físico, tecnologia e plataforma digital para criar experiências voltadas ao contexto familiar.',
-      accent: 'lime',
+      accent: 'bixuco',
       tags: ['Famílias', 'Produto conectado', 'Plataforma digital'],
       logo: bixucoLogo,
       teamImage: bixucoTeam,
