@@ -1132,14 +1132,22 @@ h2 { font-size: clamp(2.5rem, 5vw, 5.2rem); line-height: .98; letter-spacing: -.
   .menu-toggle { min-width: 40px; min-height: 40px; padding: 6px; }
   .preferences button { min-width: 40px; min-height: 40px; }
   .detail-header > .detail-back { margin-left: auto; }
-  .team-gallery { grid-template-columns: 1fr; grid-template-rows: auto; gap: 28px; }
+  .team-gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: auto auto; align-items: start; gap: 20px 6px; padding: 8px 12px 24px; }
   .team-photo--group { height: auto; max-height: 400px; }
-  .team-photo--portrait { width: 130px; }
-  .startup-detail-page--bixuco .team-photo--portrait { width: 156px; }
-  .team-member strong { font-size: 13px; }
-  .team-member span { font-size: 11px; }
-  .member-socials { gap: 8px; }
-  .member-socials a { width: 36px; height: 36px; }
+  .team-photo--portrait { width: min(100px, 100%); }
+  .team-member { gap: 5px; }
+  .team-member strong { font-size: 10px; line-height: 1.25; }
+  .team-member span { font-size: 8px; }
+  .member-socials { gap: 5px; }
+  .member-socials a { width: 25px; height: 25px; }
+  .startup-detail-page--bixuco .team-photo--portrait { width: min(100px, 100%); }
+  .startup-detail-page--bixuco .team-member { padding: 0; }
+  .startup-detail-page--condomit .team-gallery--profiles-only { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; padding: 20px 12px; }
+  .startup-detail-page--condomit .team-member strong { font-size: 11px; }
+  .startup-detail-page--recure .team-gallery { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: auto auto; gap: 18px 5px; padding: 8px 10px 22px; }
+  .startup-detail-page--recure .team-photo--portrait { width: min(82px, 100%); }
+  .startup-detail-page--recure .team-member strong { font-size: 9px; }
+  .startup-detail-page--recure .team-member span { font-size: 8px; }
   .detail-visual { min-height: 0; }
 }
 @media (max-width: 480px) {
